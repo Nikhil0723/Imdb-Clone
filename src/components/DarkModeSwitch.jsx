@@ -1,27 +1,29 @@
-'use client'
-import React, { useEffect, useState } from 'react'
-import { MdOutlineLightMode } from "react-icons/md";
-import { BsMoonFill } from "react-icons/bs";
+'use client';
+
+import { MdLightMode, MdDarkMode } from 'react-icons/md';
+
 import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 
 export default function DarkModeSwitch() {
-const {systemTheme , theme , setTheme} = useTheme();
-
-const [mounted , setMounted ] = useState(false)
- 
-useEffect(()=>setMounted(true) , [])
-
-const currentTheme = theme === 'system' ? systemTheme : theme;
-
+  const { theme, setTheme, systemTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const currentTheme = theme === 'system' ? systemTheme : theme;
+  useEffect(() => setMounted(true), []);
   return (
-    <>
- {
-mounted &&  ( currentTheme === "dark" ?<MdOutlineLightMode className='text-xl cursor-pointer hover:text-amber-500' onClick={()=>setTheme("light")}/> : <BsMoonFill className='text-xl cursor-pointer hover:text-amber-500'
-onClick={()=>setTheme("dark")}
-/> )
- }
-    
-    
-    </>
-  )
+    <div>
+      {mounted &&
+        (currentTheme === 'dark' ? (
+          <MdLightMode
+            onClick={() => setTheme('light')}
+            className='text-xl cursor-pointer hover:text-amber-500'
+          />
+        ) : (
+          <MdDarkMode
+            onClick={() => setTheme('dark')}
+            className='text-xl cursor-pointer hover:text-amber-500'
+          />
+        ))}
+    </div>
+  );
 }

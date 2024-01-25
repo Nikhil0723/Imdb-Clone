@@ -3,7 +3,7 @@ import Image from 'next/image';
 export default async function MoviePage({ params }) {
   const movieId = params.id;
   const res = await fetch(
-    `https://api.themoviedb.org/3/tv/${movieId}?api_key=${process.env.API_KEY}`
+    `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.API_KEY}`
   );
   const movie = await res.json();
 
@@ -18,7 +18,6 @@ export default async function MoviePage({ params }) {
           height={300}
           className='rounded-lg'
           style={{ maxWidth: '100%', height: '100%' }}
-          alt='Image'
         ></Image>
         <div className='p-2'>
           <h2 className='text-lg mb-3 font-bold'>
